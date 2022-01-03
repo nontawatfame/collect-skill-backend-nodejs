@@ -1,6 +1,6 @@
 var db = require("../config/conectMysql")
  
-async function insert(name)  {
+async function create(name)  {
     let sql = `INSERT INTO subject (name) VALUES ('${name}');`
     const result = await db.query(sql,null)
 
@@ -19,6 +19,6 @@ async function getSubjects() {
 }
 
 module.exports = {
-    insert,
+    create,
     getSubjects
 }

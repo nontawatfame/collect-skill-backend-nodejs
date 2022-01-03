@@ -10,7 +10,8 @@ async function get_subjects(req, res, next) {
 
 async function create(req, res, next) {
     try {
-        res.status(201).json(await subject.insert(req.body.name))
+      
+        res.status(201).json(await subject.create(req.body.name))
     } catch (error) {
         next(error)
     }
