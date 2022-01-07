@@ -18,7 +18,20 @@ async function getSubjects() {
     return result
 }
 
+async function getSubjectsPage(start, size) {
+    let sql = `Select * from subject LIMIT ${start}, ${size};`
+    let sqlTotal = `Select COUNT(*) as count from subject;`
+    let count = await db.query(sqlTotal,null)
+    const result = {
+        data : await db.query(sql,null),
+        total_data : count[0].count,
+        total_pages : Math.ceil(count[0].count / size)
+    }
+    return result
+}
+
 module.exports = {
     create,
-    getSubjects
+    getSubjects,
+    getSubjectsPage
 }
