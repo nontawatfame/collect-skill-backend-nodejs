@@ -6,7 +6,7 @@ var db = {
     port: '3306',
     password: '123456',
     database: 'collects_kill_hours',
-    connectionLimit: 10
+    connectionLimit: 100
 }
 
 

@@ -19,7 +19,7 @@ async function getLogTimes(req, res, next) {
         console.log(req.params.page)
         console.log(req.params.size)
         let startPage =  (req.params.page - 1) * req.params.size
-        let log = await logTime.getLogTimes(startPage, req.params.size)
+        let log = await logTime.getLogTimes(startPage, req.params.size, req.params.startDate, req.params.endDate)
         console.log(log)
         res.status(200).json(log)
     } catch (error) {
