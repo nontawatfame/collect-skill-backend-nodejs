@@ -31,7 +31,14 @@ async function getLogTimes(start, size, startDate, endDate) {
     return result
 }
 
+async function getToToalSecondsSubjectById(id) {
+    let sql = `SELECT SUM(total_seconds) as seconds FROM log_time WHERE subject_id = ${id}`
+    const result = await db.query(sql, null)
+    return result
+}
+
 module.exports = {
     create,
-    getLogTimes
+    getLogTimes,
+    getToToalSecondsSubjectById
 }

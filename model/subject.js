@@ -19,7 +19,9 @@ async function getSubjects() {
 }
 
 async function getSubjectsPage(start, size) {
-    let sql = `Select * from subject ORDER BY id DESC LIMIT ${start}, ${size};`
+    let sql = `Select s.*, l.exp_next from subject as s
+        LEFT JOIN level as l on l.level = s.level
+        ORDER BY id DESC LIMIT ${start}, ${size};`
     let sqlTotal = `Select COUNT(*) as count from subject;`
     let count = await db.query(sqlTotal,null)
     const result = {
@@ -31,7 +33,9 @@ async function getSubjectsPage(start, size) {
 }
 
 async function getSubjectById(id) {
-    let sql = `Select * from subject WHERE id = ${id};`
+    let sql = `Select s.*, l.exp_next from subject as s
+        LEFT JOIN level as l on l.level = s.level
+        WHERE s.id = ${id};`
     const result = await db.query(sql,null)
     return result
 }
@@ -52,10 +56,11 @@ async function deleteSuject(id) {
     return {message}
 }
 
-async function updateByid(id, subject) {
+async function update(subject) {
+    console.log(subject)
     let sql = `UPDATE subject 
-        SET name = '${subject.name}', hours_total = '${subject.hours_total}'
-        WHERE id = ${id};`
+        SET name = '${subject.name}', seconds_total = '${subject.seconds_total}', level = '${subject.level}'
+        WHERE id = ${subject.id};`
     const result = await db.query(sql,null)
     return result
 }
@@ -66,5 +71,5 @@ module.exports = {
     getSubjectsPage,
     deleteSuject,
     getSubjectById,
-    updateByid
+    update
 }

@@ -39,7 +39,7 @@ async function updateByid(req, res, next) {
     try {
         let subjectRes = await subject.getSubjectById(req.params.id)
         subjectRes[0].name = req.body.name
-        res.status(200).json(await subject.updateByid(req.params.id, subjectRes[0]))
+        res.status(200).json(await subject.update(subjectRes[0]))
     } catch (error) {
         next(error)
     }
