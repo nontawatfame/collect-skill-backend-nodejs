@@ -54,11 +54,20 @@ async function getSubjectById(req, res, next) {
     }
 }
 
+async function checkSubjectName(req, res, next) {
+    try {      
+        res.status(200).json(await subject.checkSubjectName(req.params.name, req.params.id))
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
     get_subjects,
     get_subjects_page,
     create,
     deleteSuject,
     updateByid,
-    getSubjectById
+    getSubjectById,
+    checkSubjectName
 }

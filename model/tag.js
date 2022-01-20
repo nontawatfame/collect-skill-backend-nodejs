@@ -24,8 +24,15 @@ async function getTagsBySubjectId(subjectId) {
     return result
 }
 
+async function checkTagName(name, subjectId, id) {
+    let sql = `Select * from tag WHERE name = '${name}'And subject_id = ${subjectId} And id != ${id};`
+    const result = await db.query(sql,null)
+    return result
+}
+
 module.exports = {
     create,
     getTags,
-    getTagsBySubjectId
+    getTagsBySubjectId,
+    checkTagName
 }

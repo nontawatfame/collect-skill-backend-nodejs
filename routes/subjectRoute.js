@@ -9,5 +9,6 @@ router.get('/get-subjects/:id', subjectController.getSubjectById);
 router.post('/create', subjectController.create)
 router.put('/update/:id', subjectController.updateByid)
 router.delete('/delete/:id', subjectController.deleteSuject)
+router.get('/check-subject-name/:name/:id', subjectController.checkSubjectName)
 
 module.exports = router;
