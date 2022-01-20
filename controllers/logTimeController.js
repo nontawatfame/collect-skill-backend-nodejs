@@ -9,8 +9,7 @@ async function create(req, res, next) {
         let dateStart = moment(req.body.timeStart).format("YYYY-MM-DD HH:mm:ss")
         let dateEnd = moment(req.body.timeEnd).format("YYYY-MM-DD HH:mm:ss")
 
-        await logTime.create(req.body.subjectId, req.body.tagId, dateStart, dateEnd, 1500)
-        // await logTime.create(req.body.subjectId, req.body.tagId, dateStart, dateEnd, req.body.totalSeconds)
+        await logTime.create(req.body.subjectId, req.body.tagId, dateStart, dateEnd, req.body.totalSeconds)
 
         let subjectData = await subject.getSubjectById(req.body.subjectId)
         let secondsTotal = await logTime.getToToalSecondsSubjectById(req.body.subjectId)
