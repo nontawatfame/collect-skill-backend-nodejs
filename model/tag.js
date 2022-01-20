@@ -18,7 +18,14 @@ async function getTags() {
     return result
 }
 
+async function getTagsBySubjectId(subjectId) {
+    let sql = `Select * from tag WHERE subject_id = ${subjectId};`
+    const result = await db.query(sql,null)
+    return result
+}
+
 module.exports = {
     create,
-    getTags
+    getTags,
+    getTagsBySubjectId
 }

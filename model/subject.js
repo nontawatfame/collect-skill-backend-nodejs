@@ -6,7 +6,7 @@ async function create(name)  {
 
     let message = 'Error in creating subject';
     if (result.affectedRows) {
-        message = 'subject created successfully';
+        message = 'created subject successfully';
     }
 
     return {message}
@@ -50,7 +50,7 @@ async function deleteSuject(id) {
 
     let message = 'Error in delete subject';
     if (result.affectedRows) {
-        message = 'subject delete successfully';
+        message = 'delete subject successfully';
     }
 
     return {message}
@@ -62,7 +62,13 @@ async function update(subject) {
         SET name = '${subject.name}', seconds_total = '${subject.seconds_total}', level = '${subject.level}'
         WHERE id = ${subject.id};`
     const result = await db.query(sql,null)
-    return result
+
+    let message = 'Error in update subject';
+    if (result.affectedRows) {
+        message = 'update subject successfully';
+    }
+
+    return {message}
 }
 
 module.exports = {
