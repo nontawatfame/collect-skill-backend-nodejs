@@ -1,7 +1,6 @@
 var subject = require("../model/subject")
 
 async function get_subjects(req, res, next) {
-    console.log(req.params)
     try {
         res.json(await subject.getSubjects())
     } catch (error) {
@@ -10,7 +9,6 @@ async function get_subjects(req, res, next) {
 }
 
 async function get_subjects_page(req, res, next) {
-    console.log(req.params)
     try {
         let startPage =  (req.params.page - 1) * req.params.size
         res.json(await subject.getSubjectsPage(startPage, req.params.size))
@@ -46,7 +44,6 @@ async function updateByid(req, res, next) {
 }
 
 async function getSubjectById(req, res, next) {
-    console.log(req.params)
     try {      
         res.status(200).json(await subject.getSubjectById(req.params.id))
     } catch (error) {

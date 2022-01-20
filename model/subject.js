@@ -57,7 +57,6 @@ async function deleteSuject(id) {
 }
 
 async function update(subject) {
-    console.log(subject)
     let sql = `UPDATE subject 
         SET name = '${subject.name}', seconds_total = '${subject.seconds_total}', level = '${subject.level}'
         WHERE id = ${subject.id};`
@@ -74,7 +73,6 @@ async function update(subject) {
 async function checkSubjectName(subjectName, ignoreId) {
     let sql = `Select * from subject WHERE name = '${subjectName}' And id != ${ignoreId};`
     const result = await db.query(sql, null)
-    console.log(result)
     return result
 }
 

@@ -2,7 +2,6 @@ var db = require("../config/conectMysql")
 
 async function create(subjectId, tagId, timeStart, timeEnd, totalSeconds) {
     let sql = `INSERT INTO log_time (subject_id, tag_id, time_start, time_end, total_seconds) VALUES ('${subjectId}', ${tagId}, '${timeStart}', '${timeEnd}', '${totalSeconds}');`
-    console.log(sql)
     const result = await db.query(sql, null)
 
     let message = 'Error in creating logTime';
@@ -27,7 +26,6 @@ async function getLogTimes(start, size, startDate, endDate) {
         total_data: count[0].count,
         total_pages: Math.ceil(count[0].count / size)
     }
-    console.log(result)
     return result
 }
 
