@@ -1,3 +1,4 @@
+require('dotenv').config({ path: `./env/.env.${process.env.NODE_ENV}` })
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');

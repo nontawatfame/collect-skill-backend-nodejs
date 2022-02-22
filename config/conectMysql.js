@@ -1,7 +1,7 @@
 const mysql = require('mysql2/promise');
 
 var db = {
-    host: 'localhost',
+    host: process.env.HOST_MYSQL,
     user: 'root',
     port: '3306',
     password: '123456',
